@@ -1,0 +1,192 @@
+import allure
+import pytest
+import time
+
+
+from allure_commons.types import AttachmentType
+from appium import webdriver
+from appium.webdriver.common.appiumby import AppiumBy
+
+
+
+@pytest.fixture
+def test_dc():
+
+    desired_caps = {
+        'deviceName': 'Android',
+        'platformName': 'Android',
+        'appPackage' : 'com.inspectionsupportnetwork',
+        'appActivity' : 'com.inspectionsupportnetwork.MainActivity'
+
+    }
+    global driver
+    driver = webdriver.Remote("http://127.0.0.1:4725/wd/hub", desired_caps)
+
+    yield driver
+    driver.quit()
+
+
+@pytest.mark.skip()
+def test_createinspection(test_dc):
+
+    driver.implicitly_wait(20)
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @index=1]").send_keys("romil.singhtwadia@kadellabs.com")
+    #driver.find_element("xpath", "//android.widget.TextView[@text='FIND MY ISN']").click()
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(10)
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @bounds='[123,957][957,1047]' and @index=1]").send_keys("romilsinghtwadia")
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @focused='false' and @index=0]").send_keys("Welcome@123")
+    #driver.find_element("xpath", "//android.widget.TextView[@text='LOG IN']").click()
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    #wait = WebDriverWait(driver,20)
+    #wait.until(EC.presence_of_element_located((By.XPATH,"//*[@class='android.view.ViewGroup' and @index=0]")))
+    time.sleep(18)
+    before = driver.find_element("xpath", "//*[@class='android.widget.TextView' and @bounds='[83,848][384,953]']").text
+    #print(before)
+    driver.find_element("xpath", "//*[@class='android.widget.TextView' and @index=3]").click()
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @bounds='[48,591][1032,851]'and @index=1]").click()
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @index=1]").send_keys("New York")
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=4]").click()
+    time.sleep(3)
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=7]").click()
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @index=7]").send_keys(5000)
+
+    driver.hide_keyboard()
+
+    driver.swipe(514, 600, 514, 200, 1000)
+
+
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=0]").click()
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=8]").click()
+    driver.find_element("xpath", "//*[@class='android.widget.CheckedTextView' and @index=6]").click()
+    driver.swipe(514, 600, 514, 200, 1000)
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=0]").click()
+
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=9]").click()
+
+    driver.find_element("xpath","//*[@class='android.widget.EditText' and @index=9]").send_keys(100000)
+    driver.swipe(514, 600, 514, 200, 1000)
+    driver.hide_keyboard()
+
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=2]").click()
+    time.sleep(3)
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(3)
+    driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR, value='new UiSelector().text("Residential Inspection")').click()
+    #driver.find_element("xpath", "//android.widget.TextView[@text='Residential Inspection']").click()
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    driver.find_element("xpath", "//android.widget.TextView[@text='Slab on grade']").click()
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(3)
+    driver.find_element("xpath", "//android.widget.TextView[@text='No']").click()
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+
+    driver.find_element("xpath", "//android.widget.TextView[@text='Risky Residents???']").click()
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(4)
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(3)
+    ###################################################################################################
+    #time.sleep(3)
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=3]").click()
+    time.sleep(3)
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=3]").click()
+    time.sleep(3)
+    driver.find_element("xpath", "//*[@class='android.widget.CheckedTextView' and @index=6]").click()
+    time.sleep(3)
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    ###################################################################################################
+    #driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=2]").click()
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @index=1]").send_keys("Romil")
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=3]").click()
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @bounds='[580,738][1004,820]']").send_keys("Singhtwadia")
+    driver.hide_keyboard()
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @index=4]").click()
+    #driver.find_element("xpath", "//*[@class='android.widget.EditText' and @index=2]").send_keys("romil@gmail.com")
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @bounds='[76,833][1004,925]']").send_keys("romil@gmail.com")
+    driver.hide_keyboard()
+    driver.find_element("xpath", "//android.widget.EditText[@text='(___) ___-____']").click()
+    driver.find_element("xpath", "//android.widget.EditText[@text='(___) ___-____']").send_keys(5555553535)
+    driver.hide_keyboard()
+
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(5)
+    #driver.find_element("id", "button-text").click()
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(3)
+    #driver.find_element("id", "button").click()
+    driver.find_element("xpath", "//android.widget.TextView[@text='Next']").click()
+    time.sleep(3)
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(10)
+    #driver.find_element("xpath", "//android.widget.TextView[@text='BOOK INSPECTION']").click()
+    time.sleep(10)
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(3)
+    driver.find_element("xpath", "//android.widget.TextView[@text='Home']").click()
+    time.sleep(5)
+    after = driver.find_element("xpath", "//*[@class='android.widget.TextView' and @bounds='[83,848][384,953]']").text
+    #print(after)
+    if int(after) == int(before) + 1:
+        print("New Inspection created")
+    else:
+        print("Error in creating inspection")
+    #driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    allure.attach(driver.get_screenshot_as_png(), name="screenshot", attachment_type=AttachmentType.PNG)
+
+@pytest.mark.skip()
+def test_isnlogin(test_dc):
+    driver.implicitly_wait(20)
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @index=1]").send_keys("romil.singhtwadia@kadellabs.com")
+
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(10)
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @bounds='[123,957][957,1047]' and @index=1]").send_keys("romilsinghtwadia")
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @focused='false' and @index=0]").send_keys("Welcome@123")
+
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+
+    time.sleep(18)
+    WelcomeText = driver.find_element("xpath","//android.widget.TextView[@text='Welcome Romil!']").text
+    print(WelcomeText)
+    assert WelcomeText == "Welcome Romil!"
+    driver.find_element("xpath","//*[@class='android.widget.TextView' and @bounds='[42,104][105,169]']").click()
+    time.sleep(2)
+    allure.attach(driver.get_screenshot_as_png(), name="screenshotlogin", attachment_type=AttachmentType.PNG)
+    driver.find_element("xpath","//android.widget.TextView[@text='LOG OUT']").click()
+    time.sleep(5)
+    print("Login test got over")
+
+#@pytest.mark.skip()
+def test_createancillary(test_dc):
+    driver.implicitly_wait(20)
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @index=1]").send_keys("romil.singhtwadia@kadellabs.com")
+
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+    time.sleep(10)
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @bounds='[123,957][957,1047]' and @index=1]").send_keys("romilsinghtwadia")
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @focused='false' and @index=0]").send_keys("Welcome@123")
+
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @index=0]").click()
+
+    time.sleep(18)
+    driver.find_element("xpath", "//*[@class='android.widget.TextView' and @index=3]").click()
+    driver.find_element("xpath", "//*[@class='android.widget.TextView' and @bounds='[878,1035][975,1099]']").click()
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @bounds='[49,586][1031,740]']").click()
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @bounds='[57,1631][1021,1763]']").click()
+    driver.find_element("xpath", "//*[@class='android.widget.EditText' and @bounds='[172,632][963,731]']").send_keys("new")
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @bounds='[189,1255][557,1360]']").click()
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @bounds='[114,1673][968,1778]']").click()
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @bounds='[57,1631][1021,1763]']").click()
+    driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @bounds='[49,1020][1031,1174]']").click()
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @bounds='[57,1644][1021,1750]']").click()
+    time.sleep(3)
+    driver.find_element("xpath", "//*[@class='android.widget.Button' and @bounds='[57,1644][1021,1750]']").click()
+
+    time.sleep(8)
+    driver.swipe(514, 600, 514, 200, 1000)
+    time.sleep(8)
+    #driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @bounds='[52,1167][1028,1321]']").click()
+    #driver.find_element("xpath", "//*[@class='android.view.ViewGroup' and @bounds='[52,1131][1028,1285]']").click()
+    time.sleep(5)
+
